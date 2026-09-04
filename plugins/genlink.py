@@ -4,7 +4,6 @@ from pyrogram.errors.exceptions.bad_request_400 import ChannelInvalid, UsernameI
 from info import ADMINS, LOG_CHANNEL, FILE_STORE_CHANNEL, PUBLIC_FILE_STORE
 from database.ia_filterdb import unpack_new_file_id
 from utils import temp
-import re
 import os
 import json
 import base64
@@ -40,10 +39,10 @@ async def gen_link_s(bot, message):
 @Client.on_message(filters.command(['batch', 'pbatch']) & filters.create(allowed))
 async def gen_link_batch(bot, message):
     if " " not in message.text:
-        return await message.reply("Use correct format.\nExample <code>/batch https://t.me/sources_cods/10 https://t.me/sources_cods/20</code>.")
+        return await message.reply("Use correct format.\nExample <code>/batch https://t.me/FireflixMovies/10 https://t.me/FireflixMovies/20</code>.")
     links = message.text.strip().split(" ")
     if len(links) != 3:
-        return await message.reply("Use correct format.\nExample <code>/batch https://t.me/sources_cods/10 https://t.me/sources_cods/20</code>.")
+        return await message.reply("Use correct format.\nExample <code>/batch https://t.me/FireflixMovies/10 https://t.me/FireflixMovies/20</code>.")
     cmd, first, last = links
     regex = re.compile("(https://)?(t\.me/|telegram\.me/|telegram\.dog/)(c/)?(\d+|[a-zA-Z_0-9]+)/(\d+)$")
     match = regex.match(first)
